@@ -173,7 +173,7 @@ const NovelEditor = () => {
           </span>
         </div> */}
        <div className="flex items-center">
-          {postData.isPublished===true ? (
+          {isPublished ? (
             <span
               className="font-semibold flex h-8 w-36 items-center justify-center bg-[#89B710] text-[#fff] rounded-lg"
               onClick={handleUnpublishClick} // Unpublish
