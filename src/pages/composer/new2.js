@@ -29,22 +29,22 @@ const Posts = ({ data }) => {
     router.push("/composer/new3");
   };
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch("http://localhost:3000/api/users");
-        if (!response.ok) {
-          throw new Error("Failed to fetch data");
-        }
-        let jsonData = await response.json();
-        setPostsData(jsonData);
-        setIsLoading(false);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await fetch("http://localhost:3000/api/users");
+  //       if (!response.ok) {
+  //         throw new Error("Failed to fetch data");
+  //       }
+  //       let jsonData = await response.json();
+  //       setPostsData(jsonData);
+  //       setIsLoading(false);
+  //     } catch (error) {
+  //       console.error(error);
+  //     }
+  //   };
+  //   fetchData();
+  // }, []);
 
   return (
     <>
@@ -338,6 +338,7 @@ const Posts = ({ data }) => {
 };
 
 export async function getStaticProps() {
+  // const response = process.env.PRODUCTION_API_URL;
   const response = await fetch("http://localhost:3000/api/users");
   let jsonData = await response.json();
 
