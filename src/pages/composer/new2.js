@@ -7,6 +7,8 @@ import { v4 as uuidv4 } from "uuid";
 import addUser from "../../lib/helper";
 
 const Posts = ({ data }) => {
+
+  console.log("data====================== from new2=>",data)
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [PostsData, setPostsData] = useState(null);
