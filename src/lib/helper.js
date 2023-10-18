@@ -1,7 +1,7 @@
 // const BASE_URl ="http://localhost:3000"
 
 //  acces hot navt tyamule url blank kelela ahe
-const BASE_URl = "http://localhost:3000";
+const BASE_URl = "https://cw-webadmin.vercel.app";
 
 //all users
 export const getUser = async () => {
