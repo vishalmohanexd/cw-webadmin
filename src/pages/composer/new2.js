@@ -23,8 +23,6 @@ const Posts = ({ data }) => {
     setIsOpen(false);
   };
 
-  
-
   const newpostClicked = () => {
     router.push("/composer/new3");
   };
@@ -215,7 +213,7 @@ const Posts = ({ data }) => {
           </div>
         </aside>
         <div className="w-full sm:ml-64">
-          {data? (
+          {data ? (
             <div>
               {/* Content based on data */}
               <div className="flex justify-between p-4 mt-[10px]">
@@ -299,8 +297,8 @@ const Posts = ({ data }) => {
                     key={index}
                     className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-2"
                   >
-                    <div className="border border-[#E4E7EC] w-full rounded-lg">
-                      <div className="bg-white shadow-lg rounded-lg flex flex-col h-64">
+                   <div className="border border-[#E4E7EC] w-full rounded-lg">
+                      <div className="bg-white shadow-lg rounded-lg flex flex-col h-72">
                         <Link href={`/posts/${data.pagename}`}>
                           <div className="bg-[#F4F4F4] h-32 w-full flex items-center justify-center">
                             <div className="w-12 h-12 rounded-full border border-[#EAEAEA] flex items-center justify-center">
@@ -314,27 +312,43 @@ const Posts = ({ data }) => {
                             </div>
                           </div>
                           <div className="p-2">
-                            <h2
-                              className="text-lg font-semibold text-gray-900"
-                              style={{
-                                overflow: "hidden",
-                                whiteSpace: "nowrap",
-                                textOverflow: "ellipsis",
-                                maxWidth: "100%", // Set the max width to control the element's width
-                              }}
-                            >
-                              {data.title}
-                            </h2>
+                            {data.title ? (
+                              <h2
+                                className="text-lg font-semibold text-gray-900"
+                                style={{
+                                  overflow: "hidden",
+                                  whiteSpace: "nowrap",
+                                  textOverflow: "ellipsis",
+                                  maxWidth: "100%", // Set the max width to control the element's width
+                                }}
+                              >
+                                {data.title}
+                              </h2>
+                            ) : (
+                              <div style={{ height: "1rem" }}></div> // Empty space placeholder
+                            )}
                           </div>
                           <div className="p-2">
-                            <h2 className="text-sm font-inter  text-gray-900">
-                              {data.description}
-                            </h2>
+                            {data.description ? (
+                              <h2 className="text-sm font-inter text-gray-900">
+                                {data.description}
+                              </h2>
+                            ) : (
+                              <div style={{ height: "1rem" }}></div> // Empty space placeholder
+                            )}
+                          </div>
+                          <div className="p-2">
+                            {data.isPublished === true ? (
+                              <h2 className="text-sm font-inter text-gray-900">
+                                Published
+                              </h2>
+                            ) : (
+                              <div style={{ height: "1rem" }}>Unpublished</div> // Empty space placeholder
+                            )}
                           </div>
                         </Link>
-
                         <Link
-                          href={`/post/${data.pagename}`} 
+                          href={`/post/${data.pagename}`}
                           style={{
                             overflow: "hidden",
                             whiteSpace: "nowrap",
