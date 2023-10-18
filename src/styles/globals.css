@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color:#000;
+  background: #fff;
+}
+     
+/* .novel-border {
+  border-width: 0px !important;
+  
+}
+.novel-shadow-lg{
+  --tw-shadow: none !important;
+
+} */
+
+/* Override the sm:novel-shadow-lg class */
+@media (min-width: 640px) {
+  .sm\:novel-shadow-lg {
+    --tw-shadow-colored:none !important;
+    box-shadow:none !important;
+  }
+}
+
+/* Override the sm:novel-border class */
+@media (min-width: 640px) {
+  .sm\:novel-border {
+    border-width: none !important; /* Your custom border width */
+    border-color:none !important; /* Your custom border color */
+    border-style: none !important; /* Or any other border style you want */
+  }
+}
