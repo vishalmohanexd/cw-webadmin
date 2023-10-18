@@ -78,7 +78,6 @@ export default async function addUser(code, pagename, title) {
 // }
 
 export async function updateUser(formData) {
-  console.log("formdata from helper file===============>",formData)
   const formData2 = {
     id: formData.id,
     data: formData.data,
@@ -86,7 +85,7 @@ export async function updateUser(formData) {
     description:formData.description
   };
 
-  console.log("formdata22222222222 from helper============>",formData2)
+
 
 
 
@@ -99,7 +98,6 @@ export async function updateUser(formData) {
     const response = await fetch(`${BASE_URl}/api/users/${formData.id}`, Options);
     const result= await response.json()
 
-    console.log("result============>",result)
   } catch (error) {
     console.log("errrrrrrrrrrr", error);
     return "";
@@ -120,7 +118,7 @@ export async function deleteUser(userId) {
 
     const response = await fetch(`${BASE_URl}/api/users/${userId}`, Options);
 
-    console.log("responseeeeeeee========>", response);
+
 
     // Return the JSON response
     return response.json();
