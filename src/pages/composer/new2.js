@@ -6,7 +6,7 @@ import { useTransition } from "react";
 import { v4 as uuidv4 } from "uuid";
 import addUser from "../../lib/helper";
 
-const Posts = () => {
+const Posts = ({ data }) => {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [PostsData, setPostsData] = useState(null);
@@ -32,7 +32,7 @@ const Posts = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("https://cw-webadmin.vercel.app/api/users");
+        const response = await fetch("http://localhost:3000/api/users");
         if (!response.ok) {
           throw new Error("Failed to fetch data");
         }
@@ -215,7 +215,7 @@ const Posts = () => {
           </div>
         </aside>
         <div className="w-full sm:ml-64">
-          {PostsData? (
+          {data? (
             <div>
               {/* Content based on data */}
               <div className="flex justify-between p-4 mt-[10px]">
@@ -248,7 +248,7 @@ const Posts = () => {
                 </button>
               </div>
               <div className="flex flex-wrap p-[70px]">
-                {PostsData.map((data, index) => (
+                {data.map((data, index) => (
                   <div
                     key={index}
                     className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-2"
@@ -337,17 +337,16 @@ const Posts = () => {
   );
 };
 
-// export async function getStaticProps() {
-//   // const response = process.env.PRODUCTION_API_URL;
-//   const response = await fetch("http://localhost:3000/api/users");
-//   let jsonData = await response.json();
+export async function getStaticProps() {
+  const response = await fetch("http://localhost:3000/api/users");
+  let jsonData = await response.json();
 
-//   return {
-//     props: {
-//       data: jsonData,
-//     },
-//     revalidate: false,
-//   };
-// }
+  return {
+    props: {
+      data: jsonData,
+    },
+    revalidate: false,
+  };
+}
 
 export default Posts;

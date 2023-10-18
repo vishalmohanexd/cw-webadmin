@@ -13,29 +13,14 @@ const NovelEditor = () => {
   const [editordata, setEditorData] = useState([]);
   const [PostData, setPostData] = useState(null);
 
-  const saveData = () => {
-    
-    // try {
-    //   addUser({ data: editordata })
-    //     .then((result) => {
-    //       console.log("result===>", result);
-    //     })
-    //     .catch((error) => {
-    //       console.error(error);
-    //     });
-    // } catch (error) {
-    //   console.error("Failed data:", error);
-    // }
+ 
 
-    
-  };
-
-  const fetchData = async () => {
+  const fetchData = async (ids) => {
     if(id){
       try {
         const response = await fetch(
           
-          `https://cw-webadmin.vercel.app/api/singleuser?userId=${id}`
+          `https://cw-webadmin.vercel.app/api/singleuser?userId=${ids}`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch data");
@@ -51,13 +36,13 @@ const NovelEditor = () => {
   };
 
   useEffect(() => {
-    fetchData();
-  }, []);
+    fetchData(id);
+  }, [id]);
 
   const backtoPost = () => {
     localStorage.clear();
     router.push("/composer/new2");
-    setPostData("");
+    // setPostData("");
   };
 
   return (
@@ -69,7 +54,7 @@ const NovelEditor = () => {
         <div className="flex items-center">
           <span
             className="font-semibold flex h-8 w-36 items-center justify-center bg-[#89B710] text-[#fff] rounded-lg"
-            onClick={saveData}
+            // onClick={saveData}
           >
             Publish
           </span>
