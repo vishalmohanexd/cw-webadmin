@@ -339,11 +339,11 @@ const Posts = ({ data }) => {
                           </div>
                           <div className="p-2">
                             {data.isPublished === true ? (
-                              <h2 className="font-semibold flex h-8 w-36 items-center justify-center bg-[#89B710] text-[#fff] rounded-lg">
+                              <h2 className="text-sm font-bold font-inter text-gray-900">
                                 Published
                               </h2>
                             ) : (
-                              <div className="font-semibold flex h-8 w-36 items-center justify-center bg-[#89B710] text-[#fff] rounded-lg" style={{ height: "1rem" }}>Unpublished</div> // Empty space placeholder
+                              <div className="text-sm font-bold font-inter text-gray-900" style={{ height: "1rem" }}>Unpublished</div> // Empty space placeholder
                             )}
                           </div>
                         </Link>
