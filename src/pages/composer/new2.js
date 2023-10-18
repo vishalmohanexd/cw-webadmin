@@ -339,11 +339,11 @@ const Posts = ({ data }) => {
                           </div>
                           <div className="p-2">
                             {data.isPublished === true ? (
-                              <h2 className="text-sm font-inter text-gray-900">
+                              <h2 className="font-semibold flex h-8 w-36 items-center justify-center bg-[#89B710] text-[#fff] rounded-lg">
                                 Published
                               </h2>
                             ) : (
-                              <div style={{ height: "1rem" }}>Unpublished</div> // Empty space placeholder
+                              <div className="font-semibold flex h-8 w-36 items-center justify-center bg-[#89B710] text-[#fff] rounded-lg" style={{ height: "1rem" }}>Unpublished</div> // Empty space placeholder
                             )}
                           </div>
                         </Link>
@@ -355,6 +355,7 @@ const Posts = ({ data }) => {
                             textOverflow: "ellipsis",
                             maxWidth: "100%", // Set the max width to control the element's width
                           }}
+                          className="bg-gray-200 rounded-md mt-1"
                         >
                           cw-webadmin.vercel.app/{data.pagename}
                         </Link>
