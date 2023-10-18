@@ -143,6 +143,7 @@ const NovelEditor = () => {
         }
         const jsonData = await response.json();
         setPostData(jsonData);
+        setIsPublished(jsonData.isPublished)
       } catch (error) {
         console.error(error);
         // Handle the error gracefully, e.g., set an error state or show a message.
