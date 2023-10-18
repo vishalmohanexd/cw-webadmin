@@ -121,7 +121,17 @@ const NovelEditor = () => {
   const [saveStatus, setSaveStatus] = useState("Saved");
   const [editorData, setEditorData] = useState([]);
   const [postData, setPostData] = useState(null);
+  const [isPublished, setIsPublished] = useState(null);
 
+  const handlePublishClick = () => {
+    updateUser({ id, isPublished: true });
+    setIsPublished(true);
+  };
+  
+  const handleUnpublishClick = () => {
+    updateUser({ id, isPublished: false });
+    setIsPublished(false);
+  };
   const fetchData = async (ids) => {
     if (ids) {
       try {
@@ -155,12 +165,31 @@ const NovelEditor = () => {
         <div className="flex items-center">
           <button onClick={backtoPost}>Back to post</button>
         </div>
-        <div className="flex items-center">
+        {/* <div className="flex items-center">
           <span
             className="font-semibold flex h-8 w-36 items-center justify-center bg-[#89B710] text-[#fff] rounded-lg"
           >
             Publish
           </span>
+        </div> */}
+       <div className="flex items-center">
+          {isPublished ? (
+            <span
+              className="font-semibold flex h-8 w-36 items-center justify-center bg-[#89B710] text-[#fff] rounded-lg"
+              onClick={handleUnpublishClick} // Unpublish
+              // onClick={()=>updateUser({id,isPublished:false})}
+            >
+              Unpublish
+            </span>
+          ) : (
+            <span
+              className="font-semibold flex h-8 w-36 items-center justify-center bg-[#89B710] text-[#fff] rounded-lg"
+              onClick={handlePublishClick} // Publish
+              // onClick={()=>updateUser({id,isPublished:true})}
+            >
+              Publish
+            </span>
+          )}
         </div>
       </div>
 
@@ -174,6 +203,7 @@ const NovelEditor = () => {
               autoFocus
               onChange={(e) => updateUser({ id, title: e.target.value })}
               className="dark:placeholder-text-[#101828] border-none px-0 font-cal text-3xl placeholder:text-[#101828] focus:outline-none focus:ring-0 dark:bg-black dark:text-white font-semibold"
+              style={{width:"1200px"}}
             />
             <input
               placeholder="Write a short description for your blog here"
@@ -194,7 +224,7 @@ const NovelEditor = () => {
                   setSaveStatus("Saved");
                 }, 500);
               }}
-              defaultValue={postData.data}
+              defaultValue={postData.data == null ? null : postData.data }
             />
           </div>
         </div>

@@ -247,7 +247,7 @@ const Posts = ({ data }) => {
                   Create New Post
                 </button>
               </div>
-              <div className="flex flex-wrap p-[70px]">
+              {/* <div className="flex flex-wrap p-[70px]">
                 {data.map((data, index) => (
                   <div
                     key={index}
@@ -268,7 +268,61 @@ const Posts = ({ data }) => {
                             </div>
                           </div>
                           <div className="p-2">
-                            <h2 className="text-lg font-semibold text-gray-900">
+                            <h2 className="text-lg font-semibold text-gray-900" style={{
+                                overflow: "hidden",
+                                whiteSpace: "nowrap",
+                                textOverflow: "ellipsis",
+                                maxWidth: "100%", // Set the max width to control the element's width
+                              }}>
+                              {data.title}
+                            </h2>
+                          </div>
+                          <div className="p-2">
+                            <h2 className="text-sm font-inter  text-gray-900" style={{
+                                overflow: "hidden",
+                                whiteSpace: "nowrap",
+                                textOverflow: "ellipsis",
+                                maxWidth: "100%", // Set the max width to control the element's width
+                              }}>
+                              {data.description}
+                            </h2>
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+                  </div>
+                ))}
+              </div> */}
+              <div className="flex flex-wrap p-[70px]">
+                {data.map((data, index) => (
+                  <div
+                    key={index}
+                    className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-2"
+                  >
+                    <div className="border border-[#E4E7EC] w-full rounded-lg">
+                      <div className="bg-white shadow-lg rounded-lg flex flex-col h-64">
+                        <Link href={`/posts/${data.pagename}`}>
+                          <div className="bg-[#F4F4F4] h-32 w-full flex items-center justify-center">
+                            <div className="w-12 h-12 rounded-full border border-[#EAEAEA] flex items-center justify-center">
+                              <Image
+                                src="/images/image_icon.png"
+                                alt={`Post ${index}`}
+                                height={20}
+                                width={20}
+                                className="object-cover"
+                              />
+                            </div>
+                          </div>
+                          <div className="p-2">
+                            <h2
+                              className="text-lg font-semibold text-gray-900"
+                              style={{
+                                overflow: "hidden",
+                                whiteSpace: "nowrap",
+                                textOverflow: "ellipsis",
+                                maxWidth: "100%", // Set the max width to control the element's width
+                              }}
+                            >
                               {data.title}
                             </h2>
                           </div>
@@ -277,9 +331,27 @@ const Posts = ({ data }) => {
                               {data.description}
                             </h2>
                           </div>
-                        </div>
+                        </Link>
+
+                        <Link
+                          href={`/post/${data.pagename}`} 
+                          style={{
+                            overflow: "hidden",
+                            whiteSpace: "nowrap",
+                            textOverflow: "ellipsis",
+                            maxWidth: "100%", // Set the max width to control the element's width
+                          }}
+                        >
+                          cw-webadmin.vercel.app/{data.pagename}
+                        </Link>
                       </div>
-                    </Link>
+                    </div>
+
+                    {/* <Link
+                      href={` https://cw-webadmin.vercel.app/post?${data.pagename}`}
+                    >
+                      cw-webadmin.vercel.app/{data.pagename}
+                    </Link> */}
                   </div>
                 ))}
               </div>
