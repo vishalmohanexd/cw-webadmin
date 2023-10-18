@@ -188,7 +188,7 @@ const NovelEditor = () => {
               onClick={handlePublishClick} // Publish
               // onClick={()=>updateUser({id,isPublished:true})}
             >
-              Publish
+              Published
             </span>
           )}
         </div>
