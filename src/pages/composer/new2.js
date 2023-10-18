@@ -6,9 +6,9 @@ import { useTransition } from "react";
 import { v4 as uuidv4 } from "uuid";
 import addUser from "../../lib/helper";
 
-const Posts = ({ data }) => {
+const Posts = () => {
 
-  console.log("data====================== from new2=>",data)
+  // console.log("data====================== from new2=>",data)
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [PostsData, setPostsData] = useState(null);
@@ -29,22 +29,22 @@ const Posts = ({ data }) => {
     router.push("/composer/new3");
   };
 
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await fetch("http://localhost:3000/api/users");
-  //       if (!response.ok) {
-  //         throw new Error("Failed to fetch data");
-  //       }
-  //       let jsonData = await response.json();
-  //       setPostsData(jsonData);
-  //       setIsLoading(false);
-  //     } catch (error) {
-  //       console.error(error);
-  //     }
-  //   };
-  //   fetchData();
-  // }, []);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("https://cw-webadmin.vercel.app/api/users");
+        if (!response.ok) {
+          throw new Error("Failed to fetch data");
+        }
+        let jsonData = await response.json();
+        setPostsData(jsonData);
+        setIsLoading(false);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchData();
+  }, []);
 
   return (
     <>
@@ -215,7 +215,7 @@ const Posts = ({ data }) => {
           </div>
         </aside>
         <div className="w-full sm:ml-64">
-          {data ? (
+          {PostsData ? (
             <div>
               {/* Content based on data */}
               <div className="flex justify-between p-4 mt-[10px]">
@@ -294,7 +294,7 @@ const Posts = ({ data }) => {
                 ))}
               </div> */}
               <div className="flex flex-wrap p-[70px]">
-                {data.map((data, index) => (
+                {PostsData.map((data, index) => (
                   <div
                     key={index}
                     className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-2"
@@ -426,16 +426,16 @@ const Posts = ({ data }) => {
   );
 };
 
-export async function getStaticProps() {
-  const response = await fetch("https://cw-webadmin.vercel.app/api/users");
-  let jsonData = await response.json();
+// export async function getStaticProps() {
+//   const response = await fetch("https://cw-webadmin.vercel.app/api/users");
+//   let jsonData = await response.json();
 
-  return {
-    props: {
-      data: jsonData,
-    },
-    revalidate: false,
-  };
-}
+//   return {
+//     props: {
+//       data: jsonData,
+//     },
+//     revalidate: false,
+//   };
+// }
 
 export default Posts;
