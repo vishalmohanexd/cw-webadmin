@@ -29,7 +29,6 @@ const Blogs = () => {
   return (
     <div style={{ display: "flex", justifyContent: "center" }}>
       <div style={{ width: "900px" }}>
-        <h1>Homepage</h1>
         {data?.map((item) => (
           <div key={item._id}>
             {item?.data?.content.map((contentItem, index) => {
