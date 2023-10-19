@@ -15,6 +15,7 @@ export const getUser = async () => {
 export const getUsers = async (userId) => {
   const response = await fetch(`${BASE_URl}/api/users/${userId}`);
   const json = await response.json();
+  const revalid=await fetch(`${BASE_URl}/api/revalidate`)
   if (json) {
     return json;
   } else {
@@ -27,7 +28,7 @@ export const getUsers = async (userId) => {
 //posting user
 
 export default async function addUser(code, pagename, title) {
-  console.log("pagename======>",pagename)
+  console.log("pagename======>", pagename);
 
   try {
     const Options = {
@@ -35,9 +36,10 @@ export default async function addUser(code, pagename, title) {
       headers: { "content-type": "application/json" },
       body: JSON.stringify(code, pagename, title),
     };
-    console.log("options===========>",Options)
+    // console.log("options===========>", Options);
     const response = await fetch(`/api/users`, Options);
     const json = await response.json();
+    const revalid=await fetch(`${BASE_URl}/api/revalidate`)
     return json;
   } catch (error) {
     return error;
@@ -81,14 +83,10 @@ export async function updateUser(formData) {
   const formData2 = {
     id: formData.id,
     data: formData.data,
-    title:formData.title,
-    description:formData.description,
-    isPublished:formData.isPublished
+    title: formData.title,
+    description: formData.description,
+    isPublished: formData.isPublished,
   };
-
-
-
-
 
   try {
     const Options = {
@@ -96,11 +94,13 @@ export async function updateUser(formData) {
       headers: { "content-type": "application/json" },
       body: JSON.stringify(formData2),
     };
-    const response = await fetch(`${BASE_URl}/api/users/${formData.id}`, Options);
-    const result= await response.json()
-    const revalid=await fetch(`${BASE_URl}/api/revalidate`)
-    console.log("revalid========>",revalid)
-
+    const response = await fetch(
+      `${BASE_URl}/api/users/${formData.id}`,
+      Options
+    );
+    const result = await response.json();
+    const revalid = await fetch(`${BASE_URl}/api/revalidate`);
+    console.log("revalid========>", revalid);
   } catch (error) {
     console.log("errrrrrrrrrrr", error);
     return "";
@@ -120,8 +120,6 @@ export async function deleteUser(userId) {
     };
 
     const response = await fetch(`${BASE_URl}/api/users/${userId}`, Options);
-
-
 
     // Return the JSON response
     return response.json();
