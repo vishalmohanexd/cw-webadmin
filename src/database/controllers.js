@@ -150,7 +150,7 @@ export async function postUser(req, res) {
 
 export async function putUser(req, res) {
   try {
-    const { id, data, pagename, title, description,isPublished } = req.body;
+    const { id, data, pagename, title, description,isPublished,postname } = req.body;
     if (id) {
       const query = { pagename: id };
       const update = { $set: {} };
