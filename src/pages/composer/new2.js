@@ -6,7 +6,7 @@ import { useTransition } from "react";
 import { v4 as uuidv4 } from "uuid";
 import addUser from "../../lib/helper";
 
-const Posts = () => {
+const Posts = ({data}) => {
 
   // console.log("data====================== from new2=>",data)
   const router = useRouter();
@@ -215,7 +215,7 @@ const Posts = () => {
           </div>
         </aside>
         <div className="w-full sm:ml-64">
-          {PostsData ? (
+          {data ? (
             <div>
               {/* Content based on data */}
               <div className="flex justify-between p-4 mt-[10px]">
@@ -294,7 +294,7 @@ const Posts = () => {
                 ))}
               </div> */}
               <div className="flex flex-wrap p-[70px]">
-                {PostsData.map((data, index) => (
+                {data.map((data, index) => (
                   <div
                     key={index}
                     className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-2"
@@ -340,12 +340,24 @@ const Posts = () => {
                             )}
                           </div>
                           <div className="p-2">
-                            {data.isPublished === true ? (
+                            {/* {data.isPublished === true ? (
                               <h2 className="text-sm font-bold font-inter text-gray-900">
                                 Published
                               </h2>
                             ) : (
                               <div className="text-sm font-bold font-inter text-gray-900" style={{ height: "1rem" }}>Unpublished</div> // Empty space placeholder
+                            )} */}
+                            {data.isPublished === true ? (
+                              <h2 className="text-sm font-bold font-inter text-gray-900">
+                                Published
+                              </h2>
+                            ) : (
+                              // <div className="text-sm font-bold font-inter text-gray-900" style={{ height: "1rem" }}>Unpublished</div> // Empty space placeholder
+                            
+                                <span className="bottom-2 right-2 rounded-md border border-stone-200 bg-white px-3 py-0.5 text-sm font-medium text-stone-600 shadow-md">
+                                  Draft
+                                </span>
+                             
                             )}
                           </div>
                         </Link>
@@ -426,16 +438,16 @@ const Posts = () => {
   );
 };
 
-// export async function getStaticProps() {
-//   const response = await fetch("https://cw-webadmin.vercel.app/api/users");
-//   let jsonData = await response.json();
+export async function getStaticProps() {
+  const response = await fetch("https://cw-webadmin.vercel.app/api/users");
+  let jsonData = await response.json();
 
-//   return {
-//     props: {
-//       data: jsonData,
-//     },
-//     revalidate: false,
-//   };
-// }
+  return {
+    props: {
+      data: jsonData,
+    },
+    revalidate: false,
+  };
+}
 
 export default Posts;
