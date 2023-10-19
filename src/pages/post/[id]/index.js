@@ -14,6 +14,8 @@ const Blogs = () => {
         }
         const jsonData = await response.json();
 
+        console.log("jsonData=============>",jsonData)
+
         // Check if data is an array or object
         const transformedData = Array.isArray(jsonData) ? jsonData : [jsonData];
 

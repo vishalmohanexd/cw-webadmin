@@ -66,7 +66,6 @@ export async function getsingleuserpost(req, res) {
       const user = await Users.findOne({ postname: userId });
       // const user = await Users.findById(userId);
       res.status(200).json(user);
-      res.status(404).json(user);
     }
     res.status(404).json({ error: "user is not selected" });
   } catch (error) {
