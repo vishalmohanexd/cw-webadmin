@@ -62,10 +62,13 @@ export async function getsingleuserpost(req, res) {
     const { userId } = req.query;
     // const id="6523a5d58cb19629b9ef27f1"
 
+    console.log("geting id in controller:",userId)
+
     if (userId) {
       const user = await Users.findOne({ postname: userId });
       // const user = await Users.findById(userId);
       res.status(200).json(user);
+      console.log("getting user record :",user)
     }
     res.status(404).json({ error: "user is not selected" });
   } catch (error) {
@@ -166,6 +169,9 @@ export async function putUser(req, res) {
       }
       if(isPublished !== undefined){
         update.$set.isPublished = isPublished;
+      }
+      if(postname !==undefined){
+        update.$set.postname = postname;
       }
 
 
