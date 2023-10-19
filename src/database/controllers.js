@@ -130,7 +130,7 @@ export async function postUser(req, res) {
 
 export async function putUser(req, res) {
   try {
-    const { id, data, pagename, title, description } = req.body;
+    const { id, data, pagename, title, description,isPublished } = req.body;
     if (id) {
       const query = { pagename: id };
       const update = { $set: {} };
@@ -147,6 +147,10 @@ export async function putUser(req, res) {
       if (description !== undefined) {
         update.$set.description = description;
       }
+      if(isPublished !== undefined){
+        update.$set.isPublished = isPublished;
+      }
+
 
       const updatedData = await Users.updateOne(query, update);
       // console.log("updated data==========>", updatedData);
@@ -155,6 +159,8 @@ export async function putUser(req, res) {
         res.status(404).json({ error: "User not found" });
       } else {
         res.status(200).json({ message: "User updated successfully" });
+        // const revalid=await fetch('http://localhost:3000/api/revalidate')
+
       }
     } else {
       res.status(400).json({ error: "Invalid data" });

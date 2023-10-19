@@ -82,7 +82,8 @@ export async function updateUser(formData) {
     id: formData.id,
     data: formData.data,
     title:formData.title,
-    description:formData.description
+    description:formData.description,
+    isPublished:formData.isPublished
   };
 
 
