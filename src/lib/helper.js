@@ -97,6 +97,8 @@ export async function updateUser(formData) {
     };
     const response = await fetch(`${BASE_URl}/api/users/${formData.id}`, Options);
     const result= await response.json()
+    const revalid=await fetch(`${BASE_URl}/api/revalidate`)
+    console.log("revalid========>",revalid)
 
   } catch (error) {
     console.log("errrrrrrrrrrr", error);
