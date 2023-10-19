@@ -58,21 +58,42 @@ export async function getUser(req, res) {
 }
 
 export async function getsingleuserpost(req, res) {
+  // try {
+  //   const { userId } = req.query;
+  //   // const id="6523a5d58cb19629b9ef27f1"
+
+  //   console.log("geting id in controller:",userId)
+
+  //   if (userId) {
+  //     const user = await Users.findOne({ postname: userId });
+  //     // const user = await Users.findById(userId);
+  //     res.status(200).json(user);
+  //     console.log("getting user record :",user)
+  //   }
+  //   res.status(404).json({ error: "user is not selected" });
+  // } catch (error) {
+  //   res.status(404).json({ 1: "cannot get the user" });
+  // }
+
   try {
     const { userId } = req.query;
-    // const id="6523a5d58cb19629b9ef27f1"
-
-    console.log("geting id in controller:",userId)
+    console.log("userID=========>", userId);
 
     if (userId) {
       const user = await Users.findOne({ postname: userId });
-      // const user = await Users.findById(userId);
-      res.status(200).json(user);
-      console.log("getting user record :",user)
+      console.log("userrrrrrrrrrrrrrrrr=>", user);
+
+      if (user) {
+        res.status(200).json(user);
+      } else {
+        res.status(404).json({ error: "User not found" });
+      }
+    } else {
+      res.status(404).json({ error: "User ID not provided" });
     }
-    res.status(404).json({ error: "user is not selected" });
   } catch (error) {
-    res.status(404).json({ 1: "cannot get the user" });
+    console.error(error); // Log the error for debugging
+    res.status(500).json({ error: "Internal server error" }); // Send a 500 response for internal errors
   }
 }
 

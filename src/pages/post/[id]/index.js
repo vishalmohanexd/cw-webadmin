@@ -5,6 +5,8 @@ const Blogs = () => {
     const id = router.query.id;
   const [data, setData] = useState([]);
 
+  console.log("data from post page=>",data)
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -14,7 +16,7 @@ const Blogs = () => {
         }
         const jsonData = await response.json();
 
-        console.log("jsonData=============>",jsonData)
+        console.log("jsonData from post page=============>",jsonData)
 
         // Check if data is an array or object
         const transformedData = Array.isArray(jsonData) ? jsonData : [jsonData];
