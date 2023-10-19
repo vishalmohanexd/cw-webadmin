@@ -57,6 +57,23 @@ export async function getUser(req, res) {
   }
 }
 
+export async function getsingleuserpost(req, res) {
+  try {
+    const { userId } = req.query;
+    // const id="6523a5d58cb19629b9ef27f1"
+
+    if (userId) {
+      const user = await Users.findOne({ postname: userId });
+      // const user = await Users.findById(userId);
+      res.status(200).json(user);
+      res.status(404).json(user);
+    }
+    res.status(404).json({ error: "user is not selected" });
+  } catch (error) {
+    res.status(404).json({ 1: "cannot get the user" });
+  }
+}
+
 
 export async function postUser(req, res) {
   const data = req.body;
@@ -65,6 +82,7 @@ export async function postUser(req, res) {
     data: data.data,
     pagename: data.pagename,
     title: data.title,
+    postname:data.postname
   });
   try {
     const user = await newUser.save();

@@ -27,14 +27,14 @@ export const getUsers = async (userId) => {
 
 //posting user
 
-export default async function addUser(code, pagename, title) {
+export default async function addUser(code, pagename, title,postname) {
   console.log("pagename======>", pagename);
 
   try {
     const Options = {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify(code, pagename, title),
+      body: JSON.stringify(code, pagename, title,postname),
     };
     // console.log("options===========>", Options);
     const response = await fetch(`/api/users`, Options);
@@ -86,6 +86,7 @@ export async function updateUser(formData) {
     title: formData.title,
     description: formData.description,
     isPublished: formData.isPublished,
+    postname:formData.postname
   };
 
   try {

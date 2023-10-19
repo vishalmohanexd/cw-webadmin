@@ -1,7 +1,7 @@
 // import putUser from "@/components/updateUser";
 // import connectMongo from "@/database/conn"
 import connectMongo from "../../../database/conn";
-import { getUsers,postUser,putUser,DeleteUser } from "../../../database/controllers";
+import { getsingleuserpost,postUser,putUser,DeleteUser } from "../../../database/controllers";
 export default  function handler(req, res) {
     connectMongo().catch(()=>res.status(405).json({error:"Error in the connection"}))
 
@@ -10,7 +10,7 @@ export default  function handler(req, res) {
     switch(method){
 
         case 'GET':
-            getUsers(req,res)
+            getsingleuserpost(req,res)
             break
         case 'POST':
             postUser(req,res)

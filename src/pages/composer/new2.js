@@ -362,7 +362,7 @@ const Posts = ({data}) => {
                           </div>
                         </Link>
                         <Link
-                          href={`/post/${data.pagename}`}
+                          href={`/post/${data.postname}`}
                           style={{
                             overflow: "hidden",
                             whiteSpace: "nowrap",
@@ -371,7 +371,7 @@ const Posts = ({data}) => {
                           }}
                           className="bg-gray-200 rounded-md mt-1"
                         >
-                          cw-webadmin.vercel.app/{data.pagename}
+                          cw-webadmin.vercel.app/{data.postname}
                         </Link>
                       </div>
                     </div>
@@ -411,12 +411,15 @@ const Posts = ({data}) => {
                       const pagename = uuidv4();
                       const title = "";
                       const description = "";
+                      const postname = uuidv4();
                       try {
                         const result = await addUser({
                           data: {},
                           pagename,
                           title,
                           description,
+                          postname,
+                          
                         });
                         console.log("result ===>", result);
                       } catch (error) {

@@ -5,7 +5,8 @@ const userSchema =new Schema({
     pagename:String || Number || JSON,
     title:String || null,
     description:String || null ,
-    isPublished:Boolean || String
+    isPublished:Boolean || String,
+    postname:String || Number || JSON
 },{ versionKey: false })
 
 const Users =models.user || model('user',userSchema)
